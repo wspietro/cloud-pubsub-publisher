@@ -6,7 +6,7 @@ app.listen({
   host: '0.0.0.0',
   port: validatedEnv.PORT,
 }).then(() => {
-  console.log('🚀 HTTP Server Running')
+  console.log('🚀 Alfredo OOPS Running')
 })
 
 const consumer = async () => {

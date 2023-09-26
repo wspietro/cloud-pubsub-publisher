@@ -33,7 +33,7 @@ export class GooglePubSubServer {
 
     const subscription = this.pubSubClient.subscription(subscriptionNameOrId);
     const data = JSON.stringify({ integrated: 1 });
-    const topicoInteger = 'projects/fastify-pub-sub/topics/MyInteger'
+    const subsidiaryPeriodTopic = 'projects/fastify-pub-sub/topics/SubsidiaryPeriod'
 
     let messageCount = 0;
     const messageHandler = (message: any) => {
@@ -43,8 +43,7 @@ export class GooglePubSubServer {
 
       message.ack();
 
-      this.publishMessageInTopic(topicoInteger, data)
-
+      this.publishMessageInTopic(subsidiaryPeriodTopic, data)
     };
 
     subscription.on('message', messageHandler);
