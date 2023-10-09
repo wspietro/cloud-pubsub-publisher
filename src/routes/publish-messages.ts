@@ -7,7 +7,12 @@ export async function createPeriod(request: FastifyRequest, reply: FastifyReply)
   const topicNameOrId = 'projects/fastify-pub-sub/topics/SubsidiaryPeriod';
 
   const pubSubServer = new GooglePubSubServer();
-  await pubSubServer.publishMessageInTopic(topicNameOrId, dataMessage)
 
-  return reply.status(201).send();
+  try {
+    await pubSubServer.publishMessageInTopic(topicNameOrId, dataMessage)
+    return reply.status(201).send();
+  } catch (err) {
+    // return reply.status(400).send({ message: err.message })
+    throw err
+  }
 }

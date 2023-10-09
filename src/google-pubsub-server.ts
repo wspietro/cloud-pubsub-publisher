@@ -1,4 +1,4 @@
-import { PubSub } from '@google-cloud/pubsub'
+import { Message, PubSub } from '@google-cloud/pubsub'
 import { validatedEnv } from './env';
 
 const credentials = {
@@ -35,11 +35,9 @@ export class GooglePubSubServer {
     const data = JSON.stringify({ integrated: 1 });
     const subsidiaryPeriodTopic = 'projects/fastify-pub-sub/topics/SubsidiaryPeriod'
 
-    let messageCount = 0;
-    const messageHandler = (message: any) => {
+    const messageHandler = (message: Message) => {
       console.log(`Received message: ${message.data}:`);
       console.log(`\tAttributes: ${message.attributes}`);
-      messageCount += 1;
 
       message.ack();
 
